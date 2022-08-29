@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>ooparty_csharp_artegiani</RootNamespace>
+    <RootNamespace>ooparty_csharp</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="UnitTest1.cs" />
+    <None Remove="Tests\" />
+    <None Remove="StageManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
+    <Folder Include="StageManager\" />
   </ItemGroup>
 </Project>

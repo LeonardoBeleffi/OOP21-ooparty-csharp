@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ooparty_csharp_artegiani
+namespace ooparty_csharp
 {
     public class Tests
     {
