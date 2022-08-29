@@ -16,9 +16,23 @@
   <ItemGroup>
     <None Remove="Tests\" />
     <None Remove="StageManager\" />
+    <None Remove="Minigames\" />
+    <None Remove="Minigames\Common\" />
+    <None Remove="Minigames\Common\Controller\" />
+    <None Remove="Utils\" />
+    <None Remove="Utils\Controller\" />
+    <None Remove="Utils\View\" />
+    <None Remove="Gui\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
     <Folder Include="StageManager\" />
+    <Folder Include="Minigames\" />
+    <Folder Include="Minigames\Common\" />
+    <Folder Include="Minigames\Common\Controller\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Utils\Controller\" />
+    <Folder Include="Utils\View\" />
+    <Folder Include="Gui\" />
   </ItemGroup>
 </Project>

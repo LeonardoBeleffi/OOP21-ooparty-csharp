@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Application.Minigames.Common.Controller;
+
 namespace Application
 {
     /// <summary>
@@ -7,38 +9,42 @@ namespace Application
 	/// <typeparam name="S">The scenes of the stage.</typeparam>
     public interface IStageManager<S>
     {
-        /// <value><c>LastGameController</c> represents the controller of the last minigame played.</value>
+        /// <summary>
+	    /// <c>LastGameController</c> represents the controller of the last minigame played.
+	    /// </summary>
         MinigameController LastGameController { get; set; }
 
         /// <summary>
-        /// Get the gui used.
+        /// Gets the gui used.
         /// </summary>
         Gui Gui { get; }
 
-        /// <value><c>Factory</c> represents the controller factory used.</value>
+        /// <summary>
+	    /// <c>Factory</c> represents the controller factory used.
+	    /// </summary>
         ControllerFactory Factory { get; set; }
 
         /// <summary>
         /// This method adds an existing scene.
         /// </summary>
         /// <param name="scene">The scene to add.</param>
-        void addScene(S scene);
+        void AddScene(S scene);
 
         /// <summary>
         /// This method pops a scene from the scenes list.
         /// </summary>
         /// <returns>The popped scene.</returns>
-        S popScene();
+        S PopScene();
 
         /// <summary>
         /// This method starts the gui.
         /// </summary>
-        void run();
+        void Run();
 
         /// <summary>
         /// This method returns the list of all scenes.
         /// </summary>
         /// <returns>All the scenes.</returns>
-        List<S> getScenes();
+        List<S> Scenes { get; }
     }
 }
