@@ -4,8 +4,8 @@
 C# task for the OOP course. Transcription of [OOP21-ooparty](https://github.com/EmanueleArte/OOP21-ooparty).
 
 This software is developed by:
-- [Enrico Tagliaferri](https://github.com/Erro48)
 - [Emanuele Artegiani](https://github.com/EmanueleArte)
-- [Roberto Draghetti](https://github.com/it-is-drake)
-- [Lorenzo Guerrini](https://github.com/Giova29)
+- [Enrico Tagliaferri](https://github.com/Erro48)
 - [Leonardo Beleffi](https://github.com/LeonardoBeleffi)
+- [Lorenzo Guerrini](https://github.com/Giova29)
+- [Roberto Draghetti](https://github.com/it-is-drake)
