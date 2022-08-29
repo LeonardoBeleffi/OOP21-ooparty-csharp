@@ -5,6 +5,18 @@ VisualStudioVersion = 16.0.810.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ooparty-csharp-artegiani", "ooparty-csharp-artegiani\ooparty-csharp-artegiani.csproj", "{06B5B4A4-EAD4-4A2B-AE40-2B99E3EF6285}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4752E2EE-B921-4E0E-B591-7F0343763933}"
+	ProjectSection(SolutionItems) = preProject
+		TestStageManager.cs = TestStageManager.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StageManager", "StageManager", "{EF92B9FD-5E6B-40F1-A42F-43A226BE3C01}"
+	ProjectSection(SolutionItems) = preProject
+		IStageManager.cs = IStageManager.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SceneHandler", "SceneHandler", "{D8C0F3F5-116B-4D51-973B-5BFFE20A7B3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
