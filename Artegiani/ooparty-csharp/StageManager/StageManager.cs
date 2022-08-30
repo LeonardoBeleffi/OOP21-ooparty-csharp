@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Minigames.Common.Controller;
+using ooparty_csharp.SceneHandler;
 
 namespace Application.StageManager
 {
@@ -10,6 +11,8 @@ namespace Application.StageManager
     /// <typeparam name="S">The scenes of the stage.</typeparam>
     public class StageManager<S> : IStageManager<S>
     {
+        private IMinigameController lastGameController;
+
         /// <summary>
         /// Builds a <see cref="StageManager{S}"/>
         /// </summary>
@@ -33,12 +36,12 @@ namespace Application.StageManager
 
         public IMinigameController LastGameController
         {
-            get => LastGameController;
+            get => lastGameController;
             set
             {
                 if (value is IMinigameController)
                 {
-                    LastGameController = value;
+                    lastGameController = value;
                 }
             }
         }

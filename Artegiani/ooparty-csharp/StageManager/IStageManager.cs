@@ -2,7 +2,7 @@
 using Application.Minigames.Common.Controller;
 using Application.StageManager;
 
-namespace Application
+namespace Application.StageManager
 {
     /// <summary>
 	/// This interface models a stage manager.
