@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Application.Minigames.Common.Controller;
 
 namespace Application.StageManager
 {
+    /// <summary>
+    /// Implementation of <see cref="IStageManager{S}"/>.
+    /// </summary>
+    /// <typeparam name="S">The scenes of the stage.</typeparam>
     public class StageManager<S> : IStageManager<S>
     {
-        private readonly ISceneHandler<S> sceneHandler;
-
+        /// <summary>
+        /// Builds a <see cref="StageManager{S}"/>
+        /// </summary>
+        /// <param name="title">The title of the window.</param>
+        /// <param name="guiType">The gui class type.</param>
+        /// <param name="sceneHandler">The scene handler</param>
         public StageManager(string title, Type guiType, ISceneHandler<S> sceneHandler)
         {
-            this.sceneHandler = sceneHandler;
+            SceneHandler = sceneHandler;
             LastGameController = null;
             SetGui(title, guiType);
+        }
+
+        /// <summary>
+        /// Builds a <see cref="StageManager{S}"/> without gui.
+        /// </summary>
+        /// <param name="sceneHandler">The scene handler.</param>
+        public StageManager(ISceneHandler<S> sceneHandler) : this("", null, sceneHandler)
+        {
         }
 
         public IMinigameController LastGameController { get; set; }
@@ -23,6 +38,8 @@ namespace Application.StageManager
         public IControllerFactory Factory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public List<S> Scenes => throw new NotImplementedException();
+
+        private ISceneHandler<S> SceneHandler { get; set; }
 
         public void AddScene(S scene)
         {

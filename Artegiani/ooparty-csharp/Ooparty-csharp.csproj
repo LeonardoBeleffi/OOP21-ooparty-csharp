@@ -23,6 +23,7 @@
     <None Remove="Utils\Controller\" />
     <None Remove="Utils\View\" />
     <None Remove="Gui\" />
+    <None Remove="SceneHandler\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
@@ -34,5 +35,6 @@
     <Folder Include="Utils\Controller\" />
     <Folder Include="Utils\View\" />
     <Folder Include="Gui\" />
+    <Folder Include="SceneHandler\" />
   </ItemGroup>
 </Project>
