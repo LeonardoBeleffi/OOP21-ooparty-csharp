@@ -9,12 +9,6 @@ namespace ooparty_csharp.Game.Model
     public interface IGameModel
     {
         /// <summary>
-        /// This method runs the game as long as there are turns to do.
-        /// </summary>
-        /// <returns>True if there is another turn to play</returns>
-        bool RunGame();
-
-        /// <summary>
         /// <c>Players</c> represents the list of players.
         /// </summary>
         List<IPlayer> Players { get; }
@@ -23,5 +17,11 @@ namespace ooparty_csharp.Game.Model
         /// <c>CurrPlayer</c> represents the current player.
         /// </summary>
         IPlayer CurrPlayer { get; }
+
+        /// <summary>
+        /// This method runs the game as long as there are turns to do.
+        /// </summary>
+        /// <returns>True if there is another turn to play</returns>
+        bool RunGame();
     }
 }

@@ -4,8 +4,6 @@ using ooparty_csharp.Game.Player;
 
 namespace ooparty_csharp.Game.Model
 {
-
-
     /// <summary>
     /// Abstract implementation of <see cref="IGameModel"/>.
     /// </summary>

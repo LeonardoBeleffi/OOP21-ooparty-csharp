@@ -27,6 +27,7 @@
     <None Remove="Game\" />
     <None Remove="Game\Player\" />
     <None Remove="Game\Model\" />
+    <None Remove="Minigames\Common\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
@@ -42,5 +43,6 @@
     <Folder Include="Game\" />
     <Folder Include="Game\Player\" />
     <Folder Include="Game\Model\" />
+    <Folder Include="Minigames\Common\Model\" />
   </ItemGroup>
 </Project>
