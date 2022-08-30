@@ -31,11 +31,19 @@ namespace Application.StageManager
         {
         }
 
-        public IMinigameController LastGameController { get; set; }
+        public IMinigameController LastGameController
+        {
+            get => LastGameController;
+            set
+            {
+                if (value is IMinigameController)
+                {
+                    LastGameController = value;
+                }
+            }
+        }
 
         public IGui Gui { get; private set; }
-
-        public IControllerFactory Factory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public List<S> Scenes => throw new NotImplementedException();
 
@@ -43,7 +51,7 @@ namespace Application.StageManager
 
         public void AddScene(S scene)
         {
-            throw new NotImplementedException();
+            SceneHandler.AddScene(scene);
         }
 
         public S PopScene()

@@ -21,11 +21,6 @@ namespace Application
         IGui Gui { get; }
 
         /// <summary>
-	    /// <c>Factory</c> represents the controller factory used.
-	    /// </summary>
-        IControllerFactory Factory { get; set; }
-
-        /// <summary>
         /// This method adds an existing scene.
         /// </summary>
         /// <param name="scene">The scene to add.</param>
