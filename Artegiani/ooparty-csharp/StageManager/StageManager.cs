@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Minigames.Common.Controller;
+using ooparty_csharp.Gui;
 using ooparty_csharp.SceneHandler;
 
 namespace Application.StageManager
@@ -30,7 +31,7 @@ namespace Application.StageManager
         /// Builds a <see cref="StageManager{S}"/> without gui.
         /// </summary>
         /// <param name="sceneHandler">The scene handler.</param>
-        public StageManager(ISceneHandler<S> sceneHandler) : this("", null, sceneHandler)
+        public StageManager(ISceneHandler<S> sceneHandler) : this("foo", Type.GetType("ooparty_csharp.Gui.EmptyGui"), sceneHandler)
         {
         }
 
@@ -48,23 +49,23 @@ namespace Application.StageManager
 
         public IGui Gui { get; private set; }
 
-        public List<S> Scenes => throw new NotImplementedException();
+        public Stack<S> Scenes => SceneHandler.Scenes;
 
         private ISceneHandler<S> SceneHandler { get; set; }
 
         public void AddScene(S scene)
         {
-            SceneHandler.AddScene(scene);
+            SceneHandler.Scene = scene;
         }
 
         public S PopScene()
         {
-            throw new NotImplementedException();
+            return SceneHandler.Scene;
         }
 
         public void Run()
         {
-            throw new NotImplementedException();
+            Gui.CreateGui();
         }
 
         /// <summary>

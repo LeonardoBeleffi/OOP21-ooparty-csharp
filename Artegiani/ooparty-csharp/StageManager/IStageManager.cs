@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Application.Minigames.Common.Controller;
-using Application.StageManager;
 
 namespace Application.StageManager
 {
@@ -41,6 +40,6 @@ namespace Application.StageManager
         /// This method returns the list of all scenes.
         /// </summary>
         /// <returns>All the scenes.</returns>
-        List<S> Scenes { get; }
+        Stack<S> Scenes { get; }
     }
 }

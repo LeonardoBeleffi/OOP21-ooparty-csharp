@@ -12,10 +12,9 @@ namespace ooparty_csharp.Gui
         /// Builds a <see cref="EmptyGui"/>.
         /// </summary>
         /// <param name="title">The title of the window.</param>
-        /// <param name="stageManager">The <see cref="IStageManager{S}"/> used.</param>
         public EmptyGui(string title)
         {
-            throw new NotImplementedException();
+            title.ToString();
         }
 
         public void CreateGui()
