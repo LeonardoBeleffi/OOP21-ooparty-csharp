@@ -17,12 +17,17 @@ namespace ooparty_csharp.Minigames.Common.Model
         /// </summary>
         List<IPlayer> GameResults { get; }
 
-        /**
-         * This method associates a player to his score.
-         * 
-         * @param player the current {@link game.player.Player}
-         * @param score  the score of the player at the minigame
-         */
+        /// <summary>
+        /// <c>Score</c> represents the score of the actual player.
+        /// </summary>
+        int Score { get; }
+
+        /// <summary>
+        /// <c>PlayersClassification</c> represents a dictionary with players as
+        /// keys and their score as values.
+        /// </summary>
+        Dictionary<IPlayer, int> PlayersClassification { get; }
+
         /// <summary>
         /// This method associates a player to his score.
         /// </summary>
@@ -30,20 +35,5 @@ namespace ooparty_csharp.Minigames.Common.Model
         /// <param name="score">The score of the player.</param>
         void ScoreMapper(IPlayer player, int score);
 
-        /// <summary>
-        /// <c>Score</c> represents the score of the actual player.
-        /// </summary>
-        int Score { get; }
-
-        /**
-         * Getter for playersClassification.
-         * 
-         * @return a map with players as keys and their score as values
-         */
-        /// <summary>
-        /// <c>PlayersClassification</c> represents a dictionary with players as
-        /// keys and their score as values.
-        /// </summary>
-        Dictionary<IPlayer, int> PlayersClassification { get; }
     }
 }

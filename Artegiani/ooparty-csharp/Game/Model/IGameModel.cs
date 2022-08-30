@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using ooparty_csharp.Game.Player;
 
 namespace ooparty_csharp.Game.Model
@@ -14,9 +15,9 @@ namespace ooparty_csharp.Game.Model
         List<IPlayer> Players { get; }
 
         /// <summary>
-        /// <c>CurrPlayer</c> represents the current player.
+        /// <c>PlayerEnumerator</c> represents the enumerator of the list of players.
         /// </summary>
-        IPlayer CurrPlayer { get; }
+        public IEnumerator PlayerEnumerator { get; }
 
         /// <summary>
         /// This method runs the game as long as there are turns to do.

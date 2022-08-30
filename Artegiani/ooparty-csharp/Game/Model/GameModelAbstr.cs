@@ -9,26 +9,20 @@ namespace ooparty_csharp.Game.Model
     /// </summary>
     public abstract class GameModelAbstr : IGameModel
     {
+        /// <summary>
+        /// Builds a <see cref="GameModelAbstr"/>.
+        /// </summary>
+        /// <param name="players">The list of players.</param>
         public GameModelAbstr(List<IPlayer> players)
         {
             Players = players;
             PlayerEnumerator = Players.GetEnumerator();
-            CurrPlayer = null;
         }
 
-        public List<IPlayer> Players { get; private set; }
-
-        public IPlayer CurrPlayer
-        {
-            get => CurrPlayer;
-            private set => CurrPlayer = (IPlayer)PlayerEnumerator.Current;
-        }
+        public List<IPlayer> Players { get; protected set; }
 
         public abstract bool RunGame();
 
-        /// <summary>
-        /// <c>PlayerEnumerator</c> represents the enumerator of the list of players.
-        /// </summary>
-        protected IEnumerator PlayerEnumerator { set; get; }
+        public IEnumerator PlayerEnumerator { get; protected set; }
     }
 }
