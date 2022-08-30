@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Application.Minigames.Common.Controller;
+using Application.StageManager;
 
 namespace Application
 {
@@ -12,17 +13,17 @@ namespace Application
         /// <summary>
 	    /// <c>LastGameController</c> represents the controller of the last minigame played.
 	    /// </summary>
-        MinigameController LastGameController { get; set; }
+        IMinigameController LastGameController { get; set; }
 
         /// <summary>
         /// Gets the gui used.
         /// </summary>
-        Gui Gui { get; }
+        IGui Gui { get; }
 
         /// <summary>
 	    /// <c>Factory</c> represents the controller factory used.
 	    /// </summary>
-        ControllerFactory Factory { get; set; }
+        IControllerFactory Factory { get; set; }
 
         /// <summary>
         /// This method adds an existing scene.
