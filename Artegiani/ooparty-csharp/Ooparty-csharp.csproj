@@ -24,6 +24,9 @@
     <None Remove="Utils\View\" />
     <None Remove="Gui\" />
     <None Remove="SceneHandler\" />
+    <None Remove="Game\" />
+    <None Remove="Game\Player\" />
+    <None Remove="Game\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
@@ -36,5 +39,8 @@
     <Folder Include="Utils\View\" />
     <Folder Include="Gui\" />
     <Folder Include="SceneHandler\" />
+    <Folder Include="Game\" />
+    <Folder Include="Game\Player\" />
+    <Folder Include="Game\Model\" />
   </ItemGroup>
 </Project>
