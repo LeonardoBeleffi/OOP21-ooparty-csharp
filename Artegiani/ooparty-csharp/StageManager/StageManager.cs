@@ -82,7 +82,7 @@ namespace Application.StageManager
             {
                 throw new ArgumentNullException(nameof(guiType));
             }
-            Gui = (IGui)Activator.CreateInstance(guiType, new object[] { title, this });
+            Gui = (IGui)Activator.CreateInstance(guiType, new object[] { title });
         }
     }
 }

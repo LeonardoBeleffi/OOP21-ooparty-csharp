@@ -2,11 +2,12 @@
 
 namespace ooparty_csharp
 {
-    public class Tests
+    public class TestStageManager
     {
         [SetUp]
         public void Setup()
         {
+
         }
 
         [Test]
