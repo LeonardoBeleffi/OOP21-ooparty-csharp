@@ -1,10 +1,13 @@
 ﻿using System;
+using ooparty_csharp.Minigames.Common.Model;
+
 namespace ooparty_csharp.Minigames.Mastermind
 {
     /// <summary>
-    /// This interface models the mastermind model.
+    /// This interface models the mastermind model. Specializtion of
+    /// <see cref="IMinigameModel"/>.
     /// </summary>
-    public interface IMastermindModel
+    public interface IMastermindModel : IMinigameModel
     {
         /// <summary>
         /// <c>Win</c> is true if the current player has guessed the 4-digit number.
