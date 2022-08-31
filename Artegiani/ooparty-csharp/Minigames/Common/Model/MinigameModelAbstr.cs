@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ooparty_csharp.Game.Dice;
 using ooparty_csharp.Game.Model;

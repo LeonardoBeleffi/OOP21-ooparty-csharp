@@ -20,7 +20,7 @@ namespace ooparty_csharp.Minigames.Mastermind
         /// <summary>
         /// <c>NAttempts</c> represents the number of attempts.
         /// </summary>
-        int NAttempts();
+        int NAttempts { get; }
 
         /// <summary>
         /// <c>Solution</c> represents the number to guess.
