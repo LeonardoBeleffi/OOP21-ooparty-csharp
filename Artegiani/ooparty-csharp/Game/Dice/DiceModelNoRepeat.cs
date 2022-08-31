@@ -12,6 +12,7 @@ namespace ooparty_csharp.Game.Dice
     {
         private const int MaxResult = 6;
         private readonly Random rand;
+        private int? lastResult;
 
         /// <summary>
         /// Builds a <see cref="DiceModelNoRepeat"/>.
@@ -28,8 +29,8 @@ namespace ooparty_csharp.Game.Dice
         /// </summary>
         public int? LastResult
         {
-            get => LastResult;
-            private set => LastResult = new int?((int)value);
+            get => lastResult;
+            private set => lastResult = value;
         }
 
         /// <summary>

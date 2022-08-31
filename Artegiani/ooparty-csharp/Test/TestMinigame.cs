@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using ooparty_csharp.Game.Dice;
 using ooparty_csharp.Game.Player;
@@ -48,14 +49,15 @@ namespace ooparty_csharp.Test
         public void TestPlayerTurns()
         {
             IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeat());
-            Assert.IsNull(m.PlayerEnumerator.Current);
-            m.RunGame();
+            //Assert.Throws<InvalidOperationException>(() => m.PlayerEnumerator.Current);
+            Assert.That(() => m.PlayerEnumerator.Current, Throws.InvalidOperationException);
+            _ = m.RunGame();
             Assert.AreEqual(players[0], m.PlayerEnumerator.Current);
             for (int i = 0; i < players.Count; i++)
             {
                 m.RunGame();
             }
-            Assert.AreEqual(players[^1], m.PlayerEnumerator.Current);
+            Assert.IsFalse(m.PlayerEnumerator.MoveNext());
         }
 
         /*[Test]

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ooparty_csharp.Game.Dice;
 using ooparty_csharp.Game.Model;
@@ -22,6 +23,8 @@ namespace ooparty_csharp.Minigames.Common.Model
         public MinigameModelAbstr(List<IPlayer> players, DiceModelNoRepeat dice) : base(players)
         {
             this.dice = dice;
+            PlayersClassification = new Dictionary<IPlayer, int>();
+            GameResults = players;
         }
 
         public List<IPlayer> GameResults { get; private set; }
@@ -32,7 +35,7 @@ namespace ooparty_csharp.Minigames.Common.Model
             protected set => ScoreMapper(PlayerEnumerator.Current as IPlayer, value);
         }
 
-        public Dictionary<IPlayer, int> PlayersClassification { get; }
+        public Dictionary<IPlayer, int> PlayersClassification { get; private set; }
 
         public void ScoreMapper(IPlayer player, int score)
         {
@@ -69,9 +72,15 @@ namespace ooparty_csharp.Minigames.Common.Model
 
         private Dictionary<int, List<IPlayer>> GroupPlayersByScore()
         {
-            return (Dictionary<int, List<IPlayer>>)PlayersClassification.OrderByDescending(e => e.Value)
-                .GroupBy(e => e.Key)
-                .Select(grp => grp.ToList());
+            return PlayersClassification.OrderByDescending(e => e.Value)
+                //.GroupBy(e => e.Value)
+                //.Select(grp => grp.ToList())
+                .ToDictionary(e => e.Value, e =>
+                {
+                    return PlayersClassification.Where(el => el.Value == e.Value)
+                    .Select(pair => pair.Key)
+                    .ToList();
+                });
         }
     }
 }
