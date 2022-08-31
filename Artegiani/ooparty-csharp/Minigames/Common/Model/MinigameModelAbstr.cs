@@ -24,11 +24,7 @@ namespace ooparty_csharp.Minigames.Common.Model
             this.dice = dice;
         }
 
-        public List<IPlayer> GameResults
-        {
-            get => GameResults;
-            protected set => Playoff(GroupPlayersByScore());
-        }
+        public List<IPlayer> GameResults { get; private set; }
 
         public int Score
         {
@@ -43,6 +39,14 @@ namespace ooparty_csharp.Minigames.Common.Model
             PlayersClassification.Add(player, score);
         }
 
+        /// <summary>
+        /// This method sets <c>GameResults</c>.
+        /// </summary>
+        protected void SetGameResults()
+        {
+            GameResults = Playoff(GroupPlayersByScore());
+        }
+
         private List<IPlayer> Playoff(Dictionary<int, List<IPlayer>> scoreGroups)
         {
             foreach (var e in scoreGroups)
@@ -50,7 +54,7 @@ namespace ooparty_csharp.Minigames.Common.Model
                 List<IPlayer> players = e.Value;
                 if (players.Count > 1)
                 {
-                    Dictionary<IPlayer, int> sorted = new();
+                    Dictionary<IPlayer, int> sorted = new Dictionary<IPlayer, int>();
                     players.ForEach(player =>
                     {
                         dice.RollDice(player);

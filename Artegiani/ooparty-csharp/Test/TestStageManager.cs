@@ -4,6 +4,10 @@ using ooparty_csharp.SceneHandler;
 
 namespace ooparty_csharp
 {
+    /// <summary>
+    /// Test class for the stage manager.
+    /// </summary>
+    [TestFixture]
     public class TestStageManager
     {
         [Test]

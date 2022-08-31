@@ -34,6 +34,5 @@ namespace ooparty_csharp.Minigames.Common.Model
         /// <param name="player">The current <see cref="IPlayer"/>.</param>
         /// <param name="score">The score of the player.</param>
         void ScoreMapper(IPlayer player, int score);
-
     }
 }
