@@ -49,9 +49,8 @@ namespace ooparty_csharp.Test
         public void TestPlayerTurns()
         {
             IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeat());
-            //Assert.Throws<InvalidOperationException>(() => m.PlayerEnumerator.Current);
             Assert.That(() => m.PlayerEnumerator.Current, Throws.InvalidOperationException);
-            _ = m.RunGame();
+            m.RunGame();
             Assert.AreEqual(players[0], m.PlayerEnumerator.Current);
             for (int i = 0; i < players.Count; i++)
             {
@@ -60,16 +59,21 @@ namespace ooparty_csharp.Test
             Assert.IsFalse(m.PlayerEnumerator.MoveNext());
         }
 
-        /*[Test]
+        [Test]
         public void TestScoreMapper()
         {
-            IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeatImpl());
-            players.forEach(p->m.scoreMapper(p, scores.get(players.indexOf(p))));
-            final Map<Player, Integer> correctMap = Map.of(new PlayerImpl("Luca"), 4, new PlayerImpl("Giovanni"), 7,
-                    new PlayerImpl("Lorenzo"), 5, new PlayerImpl("Marco"), 2);
-            assertEquals(correctMap, m.getPlayersClassification());
+            IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeat());
+            players.ForEach(p => m.ScoreMapper(p, scores[players.IndexOf(p)]));
+            var correctMap = new Dictionary<IPlayer, int>()
+            {
+                { new Player("Luca"), 4 },
+                { new Player("Giovanni"), 7 },
+                { new Player("Lorenzo"), 5 },
+                { new Player("Marco"), 2 }
+            };
+            CollectionAssert.AreEqual(correctMap, m.PlayersClassification);
         }
-
+        /*
         [Test]
         public void TestSortPlayerByScore()
         {

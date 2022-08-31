@@ -1,4 +1,6 @@
-﻿namespace ooparty_csharp.Game.Player
+﻿using System;
+
+namespace ooparty_csharp.Game.Player
 {
     /// <summary>
     /// Implementation of <see cref="IPlayer"/>.
@@ -15,5 +17,20 @@
         }
 
         public string Nickname { get; private set; }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Player);
+        }
+
+        private bool Equals(Player other)
+        {
+            return other != null && GetHashCode().Equals(other.GetHashCode());
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Nickname);
+        }
     }
 }
