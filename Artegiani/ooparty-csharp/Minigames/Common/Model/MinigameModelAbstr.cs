@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ooparty_csharp.Game.Dice;
 using ooparty_csharp.Game.Model;
 using ooparty_csharp.Game.Player;
 
@@ -11,9 +12,16 @@ namespace ooparty_csharp.Minigames.Common.Model
     /// </summary>
     public abstract class MinigameModelAbstr : GameModelAbstr, IMinigameModel
     {
-        public MinigameModelAbstr(List<IPlayer> players) : base(players)
+        private readonly DiceModelNoRepeat dice;
+
+        /// <summary>
+        /// Builds a <see cref="MinigameModelAbstr"/>.
+        /// </summary>
+        /// <param name="players">The list of players.</param>
+        /// <param name="dice">The dice to use for the playoff.</param>
+        public MinigameModelAbstr(List<IPlayer> players, DiceModelNoRepeat dice) : base(players)
         {
-            //dice model no repeat
+            this.dice = dice;
         }
 
         public List<IPlayer> GameResults
@@ -45,8 +53,8 @@ namespace ooparty_csharp.Minigames.Common.Model
                     Dictionary<IPlayer, int> sorted = new();
                     players.ForEach(player =>
                     {
-                        //this.dice.rollDice(player);
-                        sorted.Add(player, 1/*this.dice.getLastResult().get()*/);
+                        dice.RollDice(player);
+                        sorted.Add(player, dice.LastResult.Value);
                     });
                     players = sorted.OrderByDescending(el => el.Value).Select(el => el.Key).ToList();
                     scoreGroups[e.Key] = players;
