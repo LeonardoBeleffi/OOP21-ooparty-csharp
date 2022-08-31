@@ -52,19 +52,20 @@ namespace ooparty_csharp.Minigames.Common.Model
 
         private List<IPlayer> Playoff(Dictionary<int, List<IPlayer>> scoreGroups)
         {
-            foreach (var e in scoreGroups)
+            var results = new List<IPlayer>();
+            foreach (var pair in scoreGroups.ToDictionary(e => e.Key, e => e.Value))
             {
-                List<IPlayer> players = e.Value;
+                List<IPlayer> players = pair.Value;
                 if (players.Count > 1)
                 {
-                    Dictionary<IPlayer, int> sorted = new Dictionary<IPlayer, int>();
+                    var sorted = new Dictionary<IPlayer, int>();
                     players.ForEach(player =>
                     {
                         dice.RollDice(player);
                         sorted.Add(player, dice.LastResult.Value);
                     });
                     players = sorted.OrderByDescending(el => el.Value).Select(el => el.Key).ToList();
-                    scoreGroups[e.Key] = players;
+                    scoreGroups[pair.Key] = players;
                 }
             }
             return scoreGroups.Values.SelectMany(e => e).ToList();
@@ -72,15 +73,21 @@ namespace ooparty_csharp.Minigames.Common.Model
 
         private Dictionary<int, List<IPlayer>> GroupPlayersByScore()
         {
-            return PlayersClassification.OrderByDescending(e => e.Value)
-                //.GroupBy(e => e.Value)
-                //.Select(grp => grp.ToList())
-                .ToDictionary(e => e.Value, e =>
-                {
-                    return PlayersClassification.Where(el => el.Value == e.Value)
-                    .Select(pair => pair.Key)
-                    .ToList();
-                });
+            var usedValues = new List<int>();
+            var groups = new Dictionary<int, List<IPlayer>>();
+            PlayersClassification.OrderByDescending(e => e.Value)
+                .ToList().ForEach(e =>
+                    {
+                        if (!usedValues.Contains(e.Value))
+                        {
+                            groups.Add(e.Value, PlayersClassification
+                                .Where(el => el.Value == e.Value)
+                                .Select(pair => pair.Key)
+                                .ToList());
+                            usedValues.Add(e.Value);
+                        }
+                    });
+            return groups;
         }
     }
 }

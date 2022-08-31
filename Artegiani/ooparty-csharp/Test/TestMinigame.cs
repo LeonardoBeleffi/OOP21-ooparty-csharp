@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using ooparty_csharp.Game.Dice;
 using ooparty_csharp.Game.Player;
@@ -73,31 +73,48 @@ namespace ooparty_csharp.Test
             };
             CollectionAssert.AreEqual(correctMap, m.PlayersClassification);
         }
-        /*
+
         [Test]
         public void TestSortPlayerByScore()
         {
-            final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
-            assertEquals(this.players, m.getGameResults());
-            players.forEach(p->m.scoreMapper(p, scores.get(players.indexOf(p))));
-            final List<Player> orderedList = List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Lorenzo"),
-                    new PlayerImpl("Luca"), new PlayerImpl("Marco"));
-            m.runGame();
-            assertEquals(orderedList, m.getGameResults());
+            IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeat());
+            Assert.AreEqual(players, m.GameResults);
+            players.ForEach(p => m.ScoreMapper(p, scores[players.IndexOf(p)]));
+            var orderedList = new List<IPlayer>()
+            {
+                new Player("Giovanni"),
+                new Player("Lorenzo"),
+                new Player("Luca"),
+                new Player("Marco")
+            };
+            m.RunGame();
+            CollectionAssert.AreEqual(orderedList, m.GameResults);
         }
 
         [Test]
         public void TestSortPlayerByScoreWithDraws()
         {
-            final MinigameModel m = new MinigameModelImpl(players, new DiceModelNoRepeatImpl());
-            players.forEach(p->m.scoreMapper(p, scoresDupl.get(players.indexOf(p))));
-            List<List<Player>> orderedDuplList = List.of(
-                    List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Luca"),
-                            new PlayerImpl("Lorenzo")),
-                    List.of(new PlayerImpl("Giovanni"), new PlayerImpl("Marco"), new PlayerImpl("Lorenzo"),
-                            new PlayerImpl("Luca")));
-            m.runGame();
-            assertTrue(orderedDuplList.contains(m.getGameResults()));
-        }*/
+            IMinigameModel m = new MinigameModel(players, new DiceModelNoRepeat());
+            players.ForEach(p => m.ScoreMapper(p, scoresDupl[players.IndexOf(p)]));
+            var orderedDuplList = new List<List<IPlayer>>()
+            {
+                    new List<IPlayer>
+                    {
+                        new Player("Giovanni"),
+                        new Player("Marco"),
+                        new Player("Luca"),
+                        new Player("Lorenzo")
+                    },
+                    new List<IPlayer>
+                    {
+                        new Player("Giovanni"),
+                        new Player("Marco"),
+                        new Player("Lorenzo"),
+                        new Player("Luca")
+                    }
+            };
+            m.RunGame();
+            Assert.IsTrue(orderedDuplList.Any(l => l.SequenceEqual(m.GameResults)));
+        }
     }
 }

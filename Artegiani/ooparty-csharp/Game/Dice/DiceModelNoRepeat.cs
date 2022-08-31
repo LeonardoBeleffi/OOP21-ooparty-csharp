@@ -80,7 +80,7 @@ namespace ooparty_csharp.Game.Dice
         /// <param name="result">The result of the dice roll.</param>
         private void SetResult(IPlayer player, int result)
         {
-            LastResult = new int?(result);
+            LastResult = result;
             Results.Add(new KeyValuePair<IPlayer, int>(player, result));
         }
     }
