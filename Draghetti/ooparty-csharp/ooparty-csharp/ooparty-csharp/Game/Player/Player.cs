@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ooparty_csharp.Game.Powerup;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -105,7 +106,7 @@ namespace ooparty_csharp.Game.Player
             {
                 LifePoints = 0;
                 IsDead = true;
-                Coins = Coins / 2;
+                Coins /= 2;
             }
         }
 
@@ -119,7 +120,12 @@ namespace ooparty_csharp.Game.Player
 
         public void UsePowerup(string powerupType, IPlayer target)
         {
-            
+            IPowerup powerup = Powerups.Find(p => p.PowerupType.Equals(powerupType));
+            if (powerup != null)
+            {
+                powerup.UsePowerup(target);
+                Powerups.Remove(powerup);
+            }
         }
     }
 }

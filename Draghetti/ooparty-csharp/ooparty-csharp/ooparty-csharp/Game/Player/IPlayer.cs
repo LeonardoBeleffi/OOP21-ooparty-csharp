@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ooparty_csharp.Game.Powerup;
+using System.Collections.Generic;
 
 namespace ooparty_csharp.Game.Player
 {
