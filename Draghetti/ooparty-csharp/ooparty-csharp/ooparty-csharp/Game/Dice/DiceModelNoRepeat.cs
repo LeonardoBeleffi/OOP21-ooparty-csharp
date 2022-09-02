@@ -3,6 +3,9 @@ using System;
 
 namespace ooparty_csharp.Game.Dice
 {
+    /// <summary>
+    /// Specialization of <see cref="DiceModel"/>.
+    /// </summary>
     class DiceModelNoRepeat: DiceModel
     {
         public new int RollDice(IPlayer player)

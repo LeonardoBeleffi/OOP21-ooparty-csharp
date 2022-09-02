@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace ooparty_csharp.Game.Player
 {
+    /// <summary>
+    /// Implementation of <see cref="IPlayer"/>
+    /// </summary>
     public class Player : IPlayer
     {
+        /// <summary>
+        /// <c>MAX_LIFE</c> is the maximum amount of lifepoints for a player.
+        /// </summary>
         public const int MAX_LIFE = 100;
 
         public string Nickname { get; private set; }
@@ -33,6 +39,11 @@ namespace ooparty_csharp.Game.Player
 
         public List<IPowerup> Powerups { get; }
 
+        /// <summary>
+        /// Builds a <see cref="Player"/>.
+        /// </summary>
+        /// <param name="nickname">The selected nickname.</param>
+        /// <param name="color">The selected color.</param>
         public Player(string nickname, string color)
         {
             Nickname = nickname;

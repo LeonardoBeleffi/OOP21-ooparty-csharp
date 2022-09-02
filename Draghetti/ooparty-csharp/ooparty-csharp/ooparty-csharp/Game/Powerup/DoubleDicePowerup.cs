@@ -2,6 +2,9 @@
 
 namespace ooparty_csharp.Game.Powerup
 {
+    /// <summary>
+    /// Implementation of <see cref="IPowerup"/>.
+    /// </summary>
     class DoubleDicePowerup : IPowerup
     {
         public string PowerupType { get; } = "Double Dice Power-Up";
