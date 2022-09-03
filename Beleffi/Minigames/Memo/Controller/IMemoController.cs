@@ -15,7 +15,7 @@ namespace Beleffi.Minigames.Memo.Controller
         /// This method picks a card.
         /// </summary>
         /// <param name="cardValue">the value of the card.</param>
-        void PickCard(int cardValue);
+        void PickCard(in int cardValue);
 
         /// <summary>
         /// This methods tells whether the game has ended.

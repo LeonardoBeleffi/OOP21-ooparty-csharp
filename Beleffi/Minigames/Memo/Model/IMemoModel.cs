@@ -25,6 +25,6 @@ namespace Beleffi.Minigames.Memo.Model
         /// This method sets the value of the next card to be chosen.
         /// </summary>
         /// <param name="cardValue">the value of the card chosen.</param>
-        void SetValue(int cardValue);
+        void SetValue(in int cardValue);
     }
 }
