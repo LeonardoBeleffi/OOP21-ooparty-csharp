@@ -14,9 +14,9 @@ namespace Beleffi.Minigames.Memo.Model
     public class MemoModel : AbstractMinigameModel, IMemoModel
     {
 
-        private readonly IList<int> cards;
-        private int? firstCard;
-        private int? secondCard;
+        private readonly IList<int> _cards;
+        private int? _firstCard;
+        private int? _secondCard;
 
 
         /// <summary>
@@ -26,133 +26,133 @@ namespace Beleffi.Minigames.Memo.Model
         /// <param name="dice">the dice controller.</param>
         public MemoModel(in IList<IPlayer> players, in IDiceModel dice) : base(players, dice)
         {
-            this.cards = this.InitialiseCards();
-            this.ChangeTurn();
-            this.InitializePlayersScores();
+            this._cards = InitialiseCards();
+            ChangeTurn();
+            InitializePlayersScores();
         }
 
         public List<int> GetCards()
         {
-            return new List<int>(this.cards);
+            return new List<int>(_cards);
         }
 
         public bool RunGame()
         {
-            if (this.IsOver())
+            if (IsOver())
             {
                 throw new InvalidOperationException("The game is already over");
             }
 
-            if (!this.HasCurrPlayer())
+            if (!HasCurrPlayer())
             {
-                this.ChangeTurn();
+                ChangeTurn();
             }
 
-            if (!this.AreBothCardsSelected())
+            if (!AreBothCardsSelected())
             {
                 return false;
             }
 
-            var firstCard = this.firstCard ?? new Nullable<int>();
-            var secondCard = this.secondCard ?? new Nullable<int>();
+            var firstCard = _firstCard.Value;
+            var secondCard = _secondCard.Value;
             
-            this.ResetValues();
-            if (!firstCard.equals(secondCard))
+            ResetValues();
+            if (!firstCard.Equals(secondCard))
             {
-                this.ChangeTurn();
+                ChangeTurn();
                 return false;
             }
 
-            if (this.cards.contains(firstCard) && this.cards.contains(secondCard))
+            if (_cards.Contains(firstCard) && _cards.Contains(secondCard))
             {
-                this.cards.removeIf(i->i.equals(firstCard));
-                this.setScore(this.getScore() + SCORE_FOR_GUESSED_PAIR);
+                _cards.ToList().RemoveAll(i => i.Equals(firstCard));
+                Score += Score + s_scoreForGuessedPair;
                 return true;
             }
 
-            this.ChangeTurn();
+            ChangeTurn();
             return false;
         }
 
         public bool IsOver()
         {
-            final var end = this.cards.isEmpty();
+            var end = _cards.Any();
             if (end)
             {
-                this.setGameResults();
+                SetGameResults();
             }
 
             return end;
         }
 
-        public void setValue(in int cardValue)
+        public void SetValue(in int cardValue)
         {
-            if (this.firstCard.isEmpty())
+            if (!_firstCard.HasValue)
             {
-                this.firstCard = Optional.of(cardValue);
+                _firstCard = cardValue;
                 return;
             }
 
-            if (this.secondCard.isEmpty())
+            if (_secondCard.HasValue)
             {
-                this.secondCard = Optional.of(cardValue);
+                _secondCard = cardValue;
             }
         }
 
         private void ResetValues()
         {
-            this.firstCard = Optional.empty();
-            this.secondCard = Optional.empty();
+            _firstCard = null;
+            _secondCard = null;
         }
 
-        private boolean areBothCardsSelected()
+        private bool AreBothCardsSelected()
         {
-            return this.firstCard.isPresent() && this.secondCard.isPresent();
+            return _firstCard.HasValue && _secondCard.HasValue;
         }
 
         private void ChangeTurn()
         {
-            if (!this.HasNextPlayer())
+            if (!HasNextPlayer())
             {
-                this.setPlayerIterator(this.getPlayers());
+                SetPlayerIterator(GetPlayers());
             }
 
-            this.setCurrPlayer();
-            this.ResetValues();
+            SetCurrPlayer();
+            ResetValues();
         }
 
         private IList<int> InitialiseCards()
         {
-            
-            IList<int> temp = this.GetCardsValues().SelectMany(i => new List<int>(){1, 1}.GetEnumerator()).ToList();
-            this.Shuffle(temp);
+            IList<int> temp = GetCardsValues()
+                .SelectMany(i => new List<int>(new[] {i, i}))
+                .ToList();
+            Shuffle(temp);
             return temp;
         }
 
         private IEnumerable<int> GetCardsValues()
         {
-            return Enumerable.Range(0, NUMBER_OF_PAIRS_PER_PLAYER * this.getPlayers().size()).AsEnumerable();
+            return Enumerable.Range(0, s_numberOfPairsPerPlayer * GetPlayers().Count).AsEnumerable();
         }
 
         private void InitializePlayersScores()
         {
-            this.GetPlayers().forEach(p => this.ScoreMapper(p, 0));
+            GetPlayers().ToList().ForEach(p => ScoreMapper(p, 0));
         }
 
         private void Shuffle(IList<int> list)  
-        {  
-            Random rng = new Random();
+        {
             int n = list.Count;  
             while (n > 1) {  
                 n--;  
-                var k = rng.Next(n + 1);  
+                var k = new Random().Next(n + 1);  
                 var value = list[k];  
                 list[k] = list[n];  
                 list[n] = value;  
             }  
         }
 
-        private static readonly int NUMBER_OF_PAIRS_PER_PLAYER = 4;
-        private static readonly int SCORE_FOR_GUESSED_PAIR = 1;
+        private static readonly int s_numberOfPairsPerPlayer = 4;
+        private static readonly int s_scoreForGuessedPair = 1;
     }
 }
