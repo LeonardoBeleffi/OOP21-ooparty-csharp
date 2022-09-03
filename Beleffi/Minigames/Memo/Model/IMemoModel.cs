@@ -19,7 +19,7 @@ namespace Beleffi.Minigames.Memo.Model
         /// This method tells the active cards.
         /// </summary>
         /// <returns>a list containing the active cards.</returns>
-        List<int> GetCards();
+        IList<int> GetCards();
         
         /// <summary>
         /// This method sets the value of the next card to be chosen.

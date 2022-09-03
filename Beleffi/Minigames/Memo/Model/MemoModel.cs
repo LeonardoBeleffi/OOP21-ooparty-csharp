@@ -13,12 +13,9 @@ namespace Beleffi.Minigames.Memo.Model
     /// </summary>
     public class MemoModel : AbstractMinigameModel, IMemoModel
     {
-
-        private readonly IList<int> _cards;
         private int? _firstCard;
         private int? _secondCard;
-
-
+        
         /// <summary>
         /// Builds a new <see cref="MemoModel"/>.
         /// </summary>
@@ -26,14 +23,16 @@ namespace Beleffi.Minigames.Memo.Model
         /// <param name="dice">the dice controller.</param>
         public MemoModel(in IList<IPlayer> players, in IDiceModel dice) : base(players, dice)
         {
-            this._cards = InitialiseCards();
+            this.Cards = InitialiseCards();
             ChangeTurn();
             InitializePlayersScores();
         }
+        
+        public IList<int> Cards { get; }
 
-        public List<int> GetCards()
+        public IList<int> GetCards()
         {
-            return new List<int>(_cards);
+            return new List<int>(Cards);
         }
 
         public bool RunGame()
@@ -63,9 +62,9 @@ namespace Beleffi.Minigames.Memo.Model
                 return false;
             }
 
-            if (_cards.Contains(firstCard) && _cards.Contains(secondCard))
+            if (Cards.Contains(firstCard) && Cards.Contains(secondCard))
             {
-                _cards.ToList().RemoveAll(i => i.Equals(firstCard));
+                Cards.ToList().RemoveAll(i => i.Equals(firstCard));
                 Score += Score + ScoreForGuessedPair;
                 return true;
             }
@@ -76,7 +75,7 @@ namespace Beleffi.Minigames.Memo.Model
 
         public bool IsOver()
         {
-            var end = _cards.Any();
+            var end = Cards.Any();
             if (end)
             {
                 SetGameResults();
