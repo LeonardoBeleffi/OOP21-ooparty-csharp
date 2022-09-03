@@ -53,8 +53,8 @@ namespace Beleffi.Minigames.Memo.Model
                 return false;
             }
 
-            var firstCard = _firstCard.Value;
-            var secondCard = _secondCard.Value;
+            var firstCard = _firstCard ?? throw new InvalidOperationException();
+            var secondCard = _secondCard ?? throw new InvalidOperationException();
             
             ResetValues();
             if (!firstCard.Equals(secondCard))
@@ -66,7 +66,7 @@ namespace Beleffi.Minigames.Memo.Model
             if (_cards.Contains(firstCard) && _cards.Contains(secondCard))
             {
                 _cards.ToList().RemoveAll(i => i.Equals(firstCard));
-                Score += Score + s_scoreForGuessedPair;
+                Score += Score + ScoreForGuessedPair;
                 return true;
             }
 
@@ -132,7 +132,7 @@ namespace Beleffi.Minigames.Memo.Model
 
         private IEnumerable<int> GetCardsValues()
         {
-            return Enumerable.Range(0, s_numberOfPairsPerPlayer * GetPlayers().Count).AsEnumerable();
+            return Enumerable.Range(0, NumberOfPairsPerPlayer * GetPlayers().Count).AsEnumerable();
         }
 
         private void InitializePlayersScores()
@@ -152,7 +152,7 @@ namespace Beleffi.Minigames.Memo.Model
             }  
         }
 
-        private static readonly int s_numberOfPairsPerPlayer = 4;
-        private static readonly int s_scoreForGuessedPair = 1;
+        private const int NumberOfPairsPerPlayer = 4;
+        private const int ScoreForGuessedPair = 1;
     }
 }
