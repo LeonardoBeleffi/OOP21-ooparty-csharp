@@ -29,7 +29,7 @@ namespace Beleffi.Minigames.Memo.Controller
         public MemoController(in IStageManager<S> s, in IMemoModel model, in IDiceController dice)
             : base(s, dice)
         {
-            this._memoModel = _model;
+            this._memoModel = model;
         }
         
         public List<Player> GetGameResults()
@@ -42,7 +42,7 @@ namespace Beleffi.Minigames.Memo.Controller
             readonly IGenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
             this.getStageManager().getGui().getViewLoader().createMemoGuideView(guideController);
 
-            this._viewController.start(this._memoModel.getCards());
+            this._viewController.start(this._memoModel.GetCards());
             this._viewController.setPlayerLabelText(this._memoModel.getCurrPlayer());
         }
 
@@ -79,16 +79,3 @@ namespace Beleffi.Minigames.Memo.Controller
         }
     }
 }
-
-import java.util.List;
-
-import game.dice.controller.DiceController;
-import game.player.Player;
-import minigames.common.controller.MinigameControllerAbstr;
-import minigames.common.controller.MinigameGuideControllerImpl;
-import minigames.memo.model.MemoModel;
-import minigames.memo.view.MemoViewController;
-import utils.controller.GenericController;
-import utils.graphics.controller.StageManager;
-import utils.view.GenericViewController;
-
