@@ -40,20 +40,29 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Game\Dice\Controller\IDiceController.cs" />
+        <Compile Include="Game\Dice\Model\IDiceModel.cs" />
+        <Compile Include="Game\Player\IPlayer.cs" />
         <Compile Include="Minigames\Common\Controller\AbstractMinigameController.cs" />
         <Compile Include="Minigames\Common\Controller\IMinigameController.cs" />
+        <Compile Include="Minigames\Common\Controller\IMinigameGuideController.cs" />
+        <Compile Include="Minigames\Common\Controller\MinigameGuideController.cs" />
+        <Compile Include="Minigames\Common\Model\AbstractMinigameModel.cs" />
         <Compile Include="Minigames\Common\Model\IMinigameModel.cs" />
         <Compile Include="Minigames\Memo\Controller\IMemoController.cs" />
         <Compile Include="Minigames\Memo\Controller\MemoController.cs" />
         <Compile Include="Minigames\Memo\Model\IMemoModel.cs" />
+        <Compile Include="Minigames\Memo\Model\MemoModel.cs" />
+        <Compile Include="Minigames\Memo\View\IMemoViewController.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Utils\Controller\AbstractGenericController.cs" />
         <Compile Include="Utils\Graphics\Controller\IStageManager.cs" />
+        <Compile Include="Utils\Graphics\View\IGui.cs" />
+        <Compile Include="Utils\View\IGenericViewController.cs" />
+        <Compile Include="Utils\View\IViewLoader.cs" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Minigames\Common\View" />
-      <Folder Include="Minigames\Memo\View" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
