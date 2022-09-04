@@ -4,7 +4,7 @@ using Beleffi.Game.Player;
 
 namespace Beleffi.Minigames.Common.Model
 {
-    public class AbstractMinigameModel
+    public class AbstractMinigameModel : IMinigameModel
     {
         public AbstractMinigameModel(in IList<IPlayer> players, in IDiceModel dice)
         {
@@ -17,6 +17,11 @@ namespace Beleffi.Minigames.Common.Model
             return false;
         }
 
+        public IList<IPlayer> GetGameResults()
+        {
+            return null;
+        }
+ 
         public void SetGameResults()
         {
         }
@@ -25,7 +30,7 @@ namespace Beleffi.Minigames.Common.Model
         {
             return false;
         }
-        
+ 
         public void SetPlayerIterator(in IList<IPlayer> players)
         {
         }
@@ -34,6 +39,11 @@ namespace Beleffi.Minigames.Common.Model
         {
             return new List<IPlayer>();
         }
+
+        public IPlayer GetCurrPlayer()
+        {
+            return null;
+        }
         
         public void SetCurrPlayer()
         {
@@ -41,6 +51,11 @@ namespace Beleffi.Minigames.Common.Model
 
         public void ScoreMapper(in IPlayer player, in int score)
         {
+        }
+
+        public bool RunGame()
+        {
+            return false;
         }
     }
 }
