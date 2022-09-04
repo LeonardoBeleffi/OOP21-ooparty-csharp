@@ -1,81 +1,83 @@
+using System;
 using System.Collections.Generic;
 using Beleffi.Game.Dice.Controller;
+using Beleffi.Game.Player;
 using Beleffi.Minigames.Common.Controller;
-using Beleffi.Minigames.Memo.Controller;
 using Beleffi.Minigames.Memo.Model;
 using Beleffi.Minigames.Memo.View;
 using Beleffi.Utils.Graphics.Controller;
+using Beleffi.Utils.View;
 
 namespace Beleffi.Minigames.Memo.Controller
 {
     /// <summary>
     /// Implementation of <see cref="IMemoController"/>
     /// and extension of <see cref="Utils.Controller.AbstractGenericController"/>
-    /// <typeparam name="S">the scene of the stage.</typeparam>
+    /// <typeparam name="TS">the scene of the stage.</typeparam>
     /// </summary>
-    public class MemoController<S> : AbstractMinigameController<S>, IMemoController
+    public class MemoController<TS> : AbstractMinigameController<TS>, IMemoController
     {
         private readonly IMemoModel _memoModel;
         private IMemoViewController _viewController;     
      
         /// <summary>
-        /// Builder for <see cref="MemoController{S}"/>
+        /// Builder for <see cref="MemoController{TS}"/>
         /// </summary>
-        /// <typeparam name="S">the scene of the stage.</typeparam>
-        /// <param name="s">the <see cref="IStageManager{S}"/>.</param>
+        /// <typeparam name="TS">the scene of the stage.</typeparam>
+        /// <param name="s">the <see cref="IStageManager{TS}"/>.</param>
         /// <param name="model">the <see cref="IMemoModel"/>.</param>
         /// <param name="dice">the <see cref="IDiceController"/>.</param>
         /// <returns></returns>
-        public MemoController(in IStageManager<S> s, in IMemoModel model, in IDiceController dice)
+        public MemoController(in IStageManager<TS> s, in IMemoModel model, in IDiceController dice)
             : base(s, dice)
         {
-            this._memoModel = model;
+            _memoModel = model;
         }
         
-        public List<Player> GetGameResults()
+        public IList<IPlayer> GetGameResults()
         {
-            return this._memoModel.GetGameResults();
+            return _memoModel.GetGameResults();
         }
         
         public void StartGame() {
-            this.getStageManager().getGui().getViewLoader().createMemoView(this);
-            readonly IGenericController guideController = new MinigameGuideControllerImpl(this.getStageManager());
-            this.getStageManager().getGui().getViewLoader().createMemoGuideView(guideController);
+            GetStageManager().GetGui().GetViewLoader().CreateMemoView(this);
+            var guideController = new MinigameGuideController<TS>(GetStageManager());
+            GetStageManager().GetGui().GetViewLoader().CreateMemoGuideView(guideController);
 
-            this._viewController.start(this._memoModel.GetCards());
-            this._viewController.setPlayerLabelText(this._memoModel.getCurrPlayer());
+            _viewController.Start(_memoModel.GetCards());
+            _viewController.SetPlayerLabelText(_memoModel.GetCurrPlayer());
         }
 
         public void UpdateCurrentPlayerLabel() {
-            this._viewController.setPlayerLabelText(this._memoModel.getCurrPlayer());
+            _viewController.SetPlayerLabelText(_memoModel.GetCurrPlayer());
         }
 
         public void PickCard(in int cardValue) {
-            this._memoModel.setValue(cardValue);
+            _memoModel.SetValue(cardValue);
         }
 
-        public GenericViewController GetViewController() {
-            return this._viewController;
+        public IGenericViewController GetViewController() {
+            return _viewController;
         }
 
         public void SetViewController(in IGenericViewController viewController) {
             if (viewController is IMemoViewController) {
-                this._viewController = (IMemoViewController) viewController;
+                _viewController = (IMemoViewController) viewController;
             } else {
-                throw new IllegalArgumentException("The parameter must be an instance of MemoViewController");
+                throw new InvalidOperationException("The parameter must be an instance of MemoViewController");
             }
         }
 
         public bool NextTurn() {
-            var temp = this._memoModel.runGame();
-            if (this.IsOver()) {
-                this.closeGame();
+            var temp = _memoModel.RunGame();
+            if (IsOver()) {
+                CloseGame();
             }
             return temp;
         }
 
         public bool IsOver() {
-            return this._memoModel.isOver();
+            return _memoModel.IsOver();
         }
     }
 }
