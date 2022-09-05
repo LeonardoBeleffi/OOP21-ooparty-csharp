@@ -53,20 +53,20 @@ namespace ooparty_csharp.Game.Player
         {
             if (this.IsDead)
             {
-                this.death(gameMap);
+                this.Death(gameMap);
             }
         }
 
-        private void death(IGameMap gameMap)
+        private void Death(IGameMap gameMap)
         {
-            this.respawn(gameMap);
+            this.Respawn(gameMap);
             this.LifePoints = Player.MaxLife;
             this.IsDead = false;
         }
         
-        private void respawn(IGameMap gameMap)
+        private void Respawn(IGameMap gameMap)
         {
-            int firstFreeSquareIndex = this.getStarSquareIndex(gameMap) + 1;
+            int firstFreeSquareIndex = this.GetStarSquareIndex(gameMap) + 1;
             if (firstFreeSquareIndex >= gameMap.Squares.Count)
             {
                 firstFreeSquareIndex = 0;
@@ -85,7 +85,7 @@ namespace ooparty_csharp.Game.Player
             this.GoTo(gameMap, gameMap.Squares[firstFreeSquareIndex]);
         }
 
-        private int getStarSquareIndex(IGameMap gameMap)
+        private int GetStarSquareIndex(IGameMap gameMap)
         {
             int starSquareIndex = 0;
             foreach (IGameMapSquare s in gameMap.Squares)

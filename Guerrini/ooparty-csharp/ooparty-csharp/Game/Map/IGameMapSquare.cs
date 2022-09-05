@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace ooparty_csharp.Game.Map
 {
+    /// <summary>
+    /// The interface of a game map square.
+    /// </summary>
     public interface IGameMapSquare
     {
         /// <summary>
-        /// Returns the set with the list of the player on this square.
+        /// Set with the list of the player on this square.
         /// </summary>
-        /// <returns>a set with the list of the players on this square</returns>
-        ISet<IPlayer> GetPlayers();
+        ISet<IPlayer> Players { get; }
 
         /// <summary>
         /// Adds a player in this square (he is located in this square).

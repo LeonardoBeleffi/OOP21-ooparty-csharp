@@ -20,7 +20,7 @@ namespace ooparty_csharp.Game.Map
         {
             foreach (IGameMapSquare b in this.Squares)
             {
-                if (b.GetPlayers().Contains(p))
+                if (b.Players.Contains(p))
                 {
                     return b;
                 }
@@ -44,7 +44,7 @@ namespace ooparty_csharp.Game.Map
         {
             foreach (IGameMapSquare b in this.Squares)
             {
-                if (b.GetPlayers().Contains(p))
+                if (b.Players.Contains(p))
                 {
                     return true;
                 }
