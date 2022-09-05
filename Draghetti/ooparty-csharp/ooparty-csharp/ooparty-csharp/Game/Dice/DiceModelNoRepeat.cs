@@ -17,7 +17,7 @@ namespace ooparty_csharp.Game.Dice
             int result;
             do
             {
-                result = Rand.Next(1, MAX_RESULT);
+                result = Rand.Next(MAX_RESULT) + 1;
             } while (Results.ConvertAll(p => p.Value).Contains(result));
             SetResult(player, result);
             return result;

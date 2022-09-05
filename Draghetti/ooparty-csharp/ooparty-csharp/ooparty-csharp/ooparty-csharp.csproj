@@ -60,7 +60,7 @@
     <Compile Include="Game\Powerup\MagnetPowerup.cs" />
     <Compile Include="Game\Powerup\MedikitPowerup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test\TestDice.cs" />
+    <Compile Include="Utils\Enums\TurnProgress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

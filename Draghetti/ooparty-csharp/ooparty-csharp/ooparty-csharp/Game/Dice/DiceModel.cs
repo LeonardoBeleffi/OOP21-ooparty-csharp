@@ -47,7 +47,7 @@ namespace ooparty_csharp.Game.Dice
 
         public int RollDice(IPlayer player)
         {
-            int result = Rand.Next(1, MAX_RESULT);
+            int result = Rand.Next(MAX_RESULT) + 1;
             SetResult(player, result);
             return result;
         }
