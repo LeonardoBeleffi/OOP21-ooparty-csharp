@@ -18,7 +18,7 @@ namespace ooparty_csharp.Game.Map
 
         public IGameMapSquare GetPlayerPosition(IPlayer p)
         {
-            foreach (IGameMapSquare b in Squares)
+            foreach (IGameMapSquare b in this.Squares)
             {
                 if (b.GetPlayers().Contains(p))
                 {
@@ -30,10 +30,10 @@ namespace ooparty_csharp.Game.Map
 
         public void InitializePlayers(List<IPlayer> players)
         {
-            IGameMapSquare firstGameMapSquare = Squares[0];
+            IGameMapSquare firstGameMapSquare = this.Squares[0];
             foreach (IPlayer p in players)
             {
-                if (!IsPlayerAlreadyInGameMap(p))
+                if (!this.IsPlayerAlreadyInGameMap(p))
                 {
                     firstGameMapSquare.AddPlayer(p);
                 }
@@ -42,7 +42,7 @@ namespace ooparty_csharp.Game.Map
 
         private bool IsPlayerAlreadyInGameMap (IPlayer p)
         {
-            foreach (IGameMapSquare b in Squares)
+            foreach (IGameMapSquare b in this.Squares)
             {
                 if (b.GetPlayers().Contains(p))
                 {

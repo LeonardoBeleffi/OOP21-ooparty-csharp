@@ -6,11 +6,13 @@ namespace ooparty_csharp.Utils.Exceptions
 {
     public class PlayerNotFoundException : Exception
     {
-        public PlayerNotFoundException() : base()
+        public PlayerNotFoundException()
+            : base()
         {
         }
 
-        public PlayerNotFoundException(String s) : base(s)
+        public PlayerNotFoundException(String s)
+            : base(s)
         {
         }
     }
