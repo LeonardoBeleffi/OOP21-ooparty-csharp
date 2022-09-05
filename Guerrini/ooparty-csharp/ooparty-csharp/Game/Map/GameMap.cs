@@ -1,35 +1,55 @@
 ﻿
 using ooparty_csharp.Game.Player;
+using ooparty_csharp.Utils.Exceptions;
 using System.Collections.Generic;
 
 namespace ooparty_csharp.Game.Map
 {
+    /// <summary>
+    /// Implementation of <see cref="IGameMap"/>.
+    /// </summary>
     public class GameMap : IGameMap
     {
-        private List<IGameMapSquare> _squares;
-        public const int CoinsToBuyStar = 30;
-        
+        public List<IGameMapSquare> Squares { get; }
         /// <summary>
-        /// Builder for <see cref="IGameMap"/>.
+        /// Number of coins required to buy a star.
         /// </summary>
-        public GameMap()
-        {
-
-        }
-
-        public List<IGameMapSquare> GetSquares()
-        {
-            throw new System.NotImplementedException();
-        }
+        public const int CoinsToBuyStar = 30;
 
         public IGameMapSquare GetPlayerPosition(IPlayer p)
         {
-            throw new System.NotImplementedException();
+            foreach (IGameMapSquare b in Squares)
+            {
+                if (b.GetPlayers().Contains(p))
+                {
+                    return b;
+                }
+            }
+            throw new PlayerNotFoundException("Player not found in the game map");
         }
 
         public void InitializePlayers(List<IPlayer> players)
         {
-            throw new System.NotImplementedException();
+            IGameMapSquare firstGameMapSquare = Squares[0];
+            foreach (IPlayer p in players)
+            {
+                if (!IsPlayerAlreadyInGameMap(p))
+                {
+                    firstGameMapSquare.AddPlayer(p);
+                }
+            }
+        }
+
+        private bool IsPlayerAlreadyInGameMap (IPlayer p)
+        {
+            foreach (IGameMapSquare b in Squares)
+            {
+                if (b.GetPlayers().Contains(p))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

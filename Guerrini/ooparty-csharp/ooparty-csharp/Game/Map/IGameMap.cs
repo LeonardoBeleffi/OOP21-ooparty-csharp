@@ -9,10 +9,9 @@ namespace ooparty_csharp.Game.Map
     public interface IGameMap
     {
         /// <summary>
-        /// 
+        /// List of the game map's squares.
         /// </summary>
-        /// <returns>the list of the map's squares</returns>
-        List<IGameMapSquare> GetSquares();
+        List<IGameMapSquare> Squares { get; }
 
         /// <summary>
         /// 
