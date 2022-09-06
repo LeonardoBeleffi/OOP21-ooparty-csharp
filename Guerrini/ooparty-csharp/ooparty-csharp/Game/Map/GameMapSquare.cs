@@ -6,7 +6,7 @@ namespace ooparty_csharp.Game.Map
     /// <summary>
     /// The implementation of a generic <see cref="IGameMapSquare"/>.
     /// </summary>
-    class GameMapSquare : IGameMapSquare
+    public class GameMapSquare : IGameMapSquare
     {
         public ISet<IPlayer> Players { get; }
 

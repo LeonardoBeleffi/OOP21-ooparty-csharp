@@ -6,13 +6,27 @@ namespace ooparty_csharp.Game.Map
     /// <summary>
     /// A game map square where you earn coins.
     /// </summary>
-    class CoinsGameMapSquare : GameMapSquare
+    public class CoinsGameMapSquare : GameMapSquare
     {
         private int _coinsNumber;
+
+        /// <summary>
+        /// Builder for <see cref="CoinsGameMapSquare"/>
+        /// </summary>
         public CoinsGameMapSquare()
             : base()
         {
             this.GenerateNewCoins();
+        }
+
+        /// <summary>
+        /// Builder for <see cref="CoinsGameMapSquare"/>
+        /// </summary>
+        /// <param name="coinsNumber">the amount of coins that will be contained in this square</param>
+        public CoinsGameMapSquare(int coinsNumber)
+            : base()
+        {
+            this._coinsNumber = coinsNumber;
         }
 
         /// <summary>
@@ -23,6 +37,11 @@ namespace ooparty_csharp.Game.Map
         {
             p.EarnCoins(this._coinsNumber);
             this.GenerateNewCoins();
+        }
+
+        public new bool IsCoinsGameMapSquare()
+        {
+            return true;
         }
 
         private void GenerateNewCoins()

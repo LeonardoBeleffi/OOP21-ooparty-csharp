@@ -10,7 +10,7 @@ namespace ooparty_csharp.Game.Map
     /// </summary>
     public class GameMap : IGameMap
     {
-        public List<IGameMapSquare> Squares { get; }
+        public IList<IGameMapSquare> Squares { get; }
         /// <summary>
         /// Number of coins required to buy a star.
         /// </summary>
@@ -28,7 +28,7 @@ namespace ooparty_csharp.Game.Map
             throw new PlayerNotFoundException("Player not found in the game map");
         }
 
-        public void InitializePlayers(List<IPlayer> players)
+        public void InitializePlayers(IList<IPlayer> players)
         {
             IGameMapSquare firstGameMapSquare = this.Squares[0];
             foreach (IPlayer p in players)

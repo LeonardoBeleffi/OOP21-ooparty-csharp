@@ -1,10 +1,12 @@
 ﻿using ooparty_csharp.Game.Map;
-using System;
+using ooparty_csharp.Game.Powerup;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ooparty_csharp.Game.Player
 {
+    /// <summary>
+    /// This interface models one player.
+    /// </summary>
     public interface IPlayer
     {
         /// <summary>
@@ -42,6 +44,11 @@ namespace ooparty_csharp.Game.Player
         /// If the player is dead (LifePoints is 0).
         /// </summary>
         bool IsDead { get; }
+
+        /// <summary>
+        /// The list of this player's powerups.
+        /// </summary>
+        IList<IGenericPowerup> Powerups { get; }
 
         /// <summary>
         /// Moves the player forward.
@@ -109,5 +116,11 @@ namespace ooparty_csharp.Game.Player
         /// </summary>
         /// <param name="gameMap">the map of the game</param>
         void CheckIfDeadAndRespawn(IGameMap gameMap);
+
+        /// <summary>
+        /// Adds a <see cref="IGenericPowerup"/> to this player's powerups list.
+        /// </summary>
+        /// <param name="powerup">the powerup to add to the player</param>
+        void AddPowerup(IGenericPowerup powerup);
     }
 }

@@ -11,7 +11,7 @@ namespace ooparty_csharp.Game.Map
         /// <summary>
         /// List of the game map's squares.
         /// </summary>
-        List<IGameMapSquare> Squares { get; }
+        IList<IGameMapSquare> Squares { get; }
 
         /// <summary>
         /// 
@@ -24,6 +24,6 @@ namespace ooparty_csharp.Game.Map
         /// Puts all the players in the starting square if they are not already on the map.
         /// </summary>
         /// <param name="players">the list of the players to be put in the starting square</param>
-        void InitializePlayers(List<IPlayer> players);
+        void InitializePlayers(IList<IPlayer> players);
     }
 }

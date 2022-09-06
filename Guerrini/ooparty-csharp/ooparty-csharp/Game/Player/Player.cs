@@ -1,7 +1,12 @@
 ﻿using ooparty_csharp.Game.Map;
+using ooparty_csharp.Game.Powerup;
+using System.Collections.Generic;
 
 namespace ooparty_csharp.Game.Player
 {
+    /// <summary>
+    /// The implementation of <see cref="IPlayer"/>.
+    /// </summary>
     public class Player : IPlayer
     {
         public int Coins { get; private set; }
@@ -11,11 +16,14 @@ namespace ooparty_csharp.Game.Player
         public int LifePoints { get; private set; }
 
         public int LastEarnedCoins { get; private set; }
+
         public int LastDamageTaken { get; private set; }
 
         public bool IsLastStarEarned { get; set; }
 
         public bool IsDead { get; private set; }
+
+        public IList<IGenericPowerup> Powerups { get; }
 
         /// <summary>
         /// The maximum amount of life points.
@@ -33,6 +41,7 @@ namespace ooparty_csharp.Game.Player
             this.IsLastStarEarned = false;
             this.LifePoints = Player.MaxLife;
             this.LastDamageTaken = 0;
+            this.Powerups = new List<IGenericPowerup>();
             this.IsDead = false;
         }
 
@@ -104,7 +113,7 @@ namespace ooparty_csharp.Game.Player
             {
                 throw new System.ArgumentException("n can't be 0 or negative");
             }
-            this.Coins = this.Coins + n;
+            this.Coins += n;
             this.LastEarnedCoins = n;
         }
 
@@ -131,7 +140,7 @@ namespace ooparty_csharp.Game.Player
             {
                 throw new System.ArgumentException("n can't be 0 or negative");
             }
-            this.Coins = this.Coins - n;
+            this.Coins -= n;
             if (this.Coins < 0)
             {
                 this.Coins = 0;
@@ -144,7 +153,7 @@ namespace ooparty_csharp.Game.Player
             {
                 throw new System.ArgumentException("Damage can't be 0 or negative");
             }
-            this.LifePoints = this.LifePoints - damage;
+            this.LifePoints -= damage;
             this.LastDamageTaken = damage;
             if (this.LifePoints <= 0)
             {
@@ -172,7 +181,7 @@ namespace ooparty_csharp.Game.Player
             int newSquareIndex = currentSquareIndex + n;
             if (newSquareIndex >= gameMap.Squares.Count)
             {
-                newSquareIndex = newSquareIndex - gameMap.Squares.Count;
+                newSquareIndex -= gameMap.Squares.Count;
             }
             this.GoTo(gameMap, gameMap.Squares[newSquareIndex]);
         }
@@ -186,6 +195,11 @@ namespace ooparty_csharp.Game.Player
             {
                 throw new System.ArgumentException("Coins can't be negative");
             }
+        }
+
+        public void AddPowerup(IGenericPowerup powerup)
+        {
+            this.Powerups.Add(powerup);
         }
     }
 }
