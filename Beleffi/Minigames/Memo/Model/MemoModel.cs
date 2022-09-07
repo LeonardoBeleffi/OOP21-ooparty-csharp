@@ -23,7 +23,7 @@ namespace Beleffi.Minigames.Memo.Model
         /// <param name="dice">the dice controller.</param>
         public MemoModel(in IList<IPlayer> players, in IDiceModel dice) : base(players, dice)
         {
-            this.Cards = InitialiseCards();
+            Cards = InitialiseCards();
             ChangeTurn();
             InitializePlayersScores();
         }
